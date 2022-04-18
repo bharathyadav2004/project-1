@@ -1,0 +1,14 @@
+import imageio
+import numpy as np
+from matplotlib.pyplot import imshow
+%matplotlib inline
+
+image_file="image.jpg"
+content_image = imageio.imread(image_file)
+#imshow(content_image)
+
+noise_ratio = 0.6
+image_height, image_width, color_channels = content_image.shape
+noise_image = np.random.uniform(-20, 20, (1, image_height, image_width, color_channels)).astype('float32')
+input_image = noise_image * noise_ratio + content_image * (1 - noise_ratio)
+imshow(input_image[0])
